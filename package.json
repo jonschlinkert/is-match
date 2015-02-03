@@ -1,0 +1,55 @@
+{
+  "name": "is-match",
+  "description": "Create a matching function from a glob pattern, regex, string, array or function.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/jonschlinkert/is-match",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jonschlinkert/is-match.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/is-match/issues"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/jonschlinkert/is-match/blob/master/LICENSE"
+  },
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "micromatch": "^1.2.2"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "keywords": [
+    "array",
+    "function",
+    "glob",
+    "match",
+    "matcher",
+    "matches",
+    "matching",
+    "minimatch",
+    "multimatch",
+    "pattern",
+    "patterns",
+    "regex",
+    "regexp",
+    "regular expression",
+    "wildcard"
+  ]
+}
