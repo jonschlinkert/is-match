@@ -29,7 +29,7 @@
     "test": "mocha"
   },
   "dependencies": {
-    "micromatch": "^1.2.2"
+    "micromatch": "^2.1.6"
   },
   "devDependencies": {
     "mocha": "*",
