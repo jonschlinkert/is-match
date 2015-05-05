@@ -1,7 +1,7 @@
 /*!
  * is-match <https://github.com/jonschlinkert/is-match>
  *
- * Copyright (c) 2015 Jon Schlinkert, contributors.
+ * Copyright (c) 2015 Jon Schlinkert.
  * Licensed under the MIT license.
  */
 
@@ -28,7 +28,7 @@ module.exports = function isMatch(pattern, options) {
 
   if (Array.isArray(pattern)) {
     return function (str) {
-      return !!mm(str, pattern, options).length;
+      return mm(str, pattern, options).length !== 0;
     };
   }
 
