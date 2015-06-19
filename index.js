@@ -7,6 +7,9 @@
 
 'use strict';
 
+var where = require('lodash.where');
+var isObject = require('isobject');
+var isGlob = require('is-glob');
 var mm = require('micromatch');
 
 module.exports = function isMatch(pattern, options) {
@@ -15,22 +18,37 @@ module.exports = function isMatch(pattern, options) {
   }
 
   if (pattern instanceof RegExp) {
-    return function (str) {
-      return pattern.test(str);
+    return function (val) {
+      return pattern.test(val);
     };
   }
 
   if (typeof pattern === 'string') {
-    return function (str) {
-      return mm.isMatch(str, pattern, options);
+    if (isGlob(pattern)) {
+      return function (val) {
+        return mm.isMatch(val, pattern, options);
+      };
+    }
+    return function (val) {
+      return pattern === val || pattern.indexOf(val) !== -1;
     };
   }
 
   if (Array.isArray(pattern)) {
-    return function (str) {
-      return mm(str, pattern, options).length !== 0;
+    return function (val) {
+      return mm(val, pattern, options).length !== 0;
     };
   }
 
-  throw new TypeError('isMatch expects a string, array, regex or function.');
+  if (isObject(pattern)) {
+    return function (val) {
+      return (where(arrayify(val), pattern) || []).length > 0;
+    };
+  }
+  throw new TypeError('isMatch expects a string, array, regex or function:', arguments);
 };
+
+
+function arrayify(val) {
+  return Array.isArray(val) ? val : [val];
+}

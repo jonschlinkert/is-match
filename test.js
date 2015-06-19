@@ -11,15 +11,14 @@
 var should = require('should');
 var matcher = require('./');
 
-describe('errors', function () {
-  it('should throw an error when invalid args are passed:', function () {
-    (function () {
-      matcher({a: 'b'});
-    }).should.throw('isMatch expects a string, array, regex or function.');
-  });
-});
-
 describe('should return a matching function:', function () {
+  it('from an object:', function () {
+    var isMatch = matcher({a: 'b'});
+
+    isMatch({a: 'b', c: 'd'}).should.be.true;
+    isMatch({e: 'f', c: 'd'}).should.be.false;
+  });
+
   it('from a string:', function () {
     var isMatch = matcher('a')
 
