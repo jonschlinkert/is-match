@@ -7,48 +7,39 @@
 
 'use strict';
 
-var where = require('lodash.where');
+var deepEqual = require('deep-equal');
 var isObject = require('isobject');
 var isGlob = require('is-glob');
 var mm = require('micromatch');
 
-module.exports = function isMatch(pattern, options) {
-  if (typeof pattern === 'function') {
-    return pattern;
+module.exports = isMatch;
+
+function isMatch(matcher, options) {
+  if (typeof matcher === 'function') {
+    return matcher;
   }
 
-  if (pattern instanceof RegExp) {
+  if (matcher instanceof RegExp) {
     return function (val) {
-      return pattern.test(val);
+      return matcher.test(val);
     };
   }
 
-  if (typeof pattern === 'string') {
-    if (isGlob(pattern)) {
+  if (typeof matcher === 'string') {
+    if (isGlob(matcher)) {
       return function (val) {
-        return mm.isMatch(val, pattern, options);
+        return mm.isMatch(val, matcher, options);
       };
     }
     return function (val) {
-      return pattern === val || pattern.indexOf(val) !== -1;
+      return matcher === val || matcher.indexOf(val) !== -1;
     };
   }
 
-  if (Array.isArray(pattern)) {
+  if (Array.isArray(matcher) || isObject(matcher)) {
     return function (val) {
-      return mm(val, pattern, options).length !== 0;
-    };
-  }
-
-  if (isObject(pattern)) {
-    return function (val) {
-      return (where(arrayify(val), pattern) || []).length > 0;
+      return deepEqual(val, matcher);
     };
   }
   throw new TypeError('isMatch expects a string, array, regex or function:', arguments);
-};
-
-
-function arrayify(val) {
-  return Array.isArray(val) ? val : [val];
 }

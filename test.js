@@ -15,12 +15,13 @@ describe('should return a matching function:', function () {
   it('from an object:', function () {
     var isMatch = matcher({a: 'b'});
 
-    isMatch({a: 'b', c: 'd'}).should.be.true;
+    isMatch({a: 'b'}).should.be.true;
+    isMatch({a: 'b', c: 'd'}).should.be.false;
     isMatch({e: 'f', c: 'd'}).should.be.false;
   });
 
   it('from a string:', function () {
-    var isMatch = matcher('a')
+    var isMatch = matcher('a');
 
     isMatch('a').should.be.true;
     isMatch('b').should.be.false;
@@ -33,10 +34,11 @@ describe('should return a matching function:', function () {
   });
 
   it('from an array of glob patterns:', function () {
-    matcher(['a'])('a').should.be.true;
+    matcher(['a'])('a').should.be.false;
     matcher(['b'])('a').should.be.false;
-    matcher(['b', 'a'])('a').should.be.true;
-    matcher(['b', 'c', '*'])('a').should.be.true;
+    matcher(['b', 'a'])(['a', 'b']).should.be.false;
+    matcher(['b', 'a'])(['b', 'a']).should.be.true;
+    matcher(['b', 'c', '*'])(['b', 'c', '*']).should.be.true;
   });
 
   it('from a regex:', function () {
