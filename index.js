@@ -14,31 +14,31 @@ var mm = require('micromatch');
 
 module.exports = isMatch;
 
-function isMatch(matcher, options) {
-  if (typeof matcher === 'function') {
-    return matcher;
+function isMatch(pattern, options) {
+  if (typeof pattern === 'function') {
+    return pattern;
   }
 
-  if (matcher instanceof RegExp) {
+  if (pattern instanceof RegExp) {
     return function (val) {
-      return matcher.test(val);
+      return pattern.test(val);
     };
   }
 
-  if (typeof matcher === 'string') {
-    if (isGlob(matcher)) {
+  if (typeof pattern === 'string') {
+    if (isGlob(pattern)) {
       return function (val) {
-        return mm.isMatch(val, matcher, options);
+        return mm.isMatch(val, pattern, options);
       };
     }
     return function (val) {
-      return matcher === val || matcher.indexOf(val) !== -1;
+      return pattern === val || val.indexOf(pattern) !== -1;
     };
   }
 
-  if (Array.isArray(matcher) || isObject(matcher)) {
+  if (Array.isArray(pattern) || isObject(pattern)) {
     return function (val) {
-      return deepEqual(val, matcher);
+      return deepEqual(val, pattern);
     };
   }
   throw new TypeError('isMatch expects a string, array, regex or function:', arguments);

@@ -25,6 +25,8 @@ describe('should return a matching function:', function () {
 
     isMatch('a').should.be.true;
     isMatch('b').should.be.false;
+    matcher('a')('abc').should.be.true;
+    matcher('a')('def').should.be.false;
   });
 
   it('from a glob pattern:', function () {
