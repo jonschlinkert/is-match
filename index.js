@@ -28,7 +28,7 @@ function isMatch(pattern, options) {
   if (typeof pattern === 'string') {
     if (isGlob(pattern)) {
       return function (val) {
-        return mm.isMatch(val, pattern, options);
+        return mm(val, pattern, options).length !== 0;
       };
     }
     return function (val) {
