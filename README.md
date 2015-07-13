@@ -1,6 +1,6 @@
 # is-match [![NPM version](https://badge.fury.io/js/is-match.svg)](http://badge.fury.io/js/is-match)  [![Build Status](https://travis-ci.org/jonschlinkert/is-match.svg)](https://travis-ci.org/jonschlinkert/is-match)
 
-> Create a matching function from a glob pattern, regex, string, array or function.
+> Create a matching function from a glob pattern, regex, string, array, object or function.
 
 ## Install
 
@@ -79,6 +79,16 @@ isMatch('a');
 
 isMatch('b');
 //=> false
+```
+
+**from an object:**
+
+```js
+var isMatch = matcher({a: 'b'});
+
+isMatch({a: 'b'}); //=> true
+isMatch({a: 'b', c: 'd'}); //=> false
+isMatch({e: 'f', c: 'd'}); //=> false
 ```
 
 ## Related projects
