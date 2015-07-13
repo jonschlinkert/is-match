@@ -11,6 +11,14 @@
 var should = require('should');
 var matcher = require('./');
 
+it('should throw if not array, string, regexp, object or function', function () {
+  function fixture () {
+    matcher(1234)
+  }
+  should.throws(fixture, TypeError)
+  should.throws(fixture, /expects a string, array, regex, object or function/)
+})
+
 describe('should return a matching function:', function () {
   it('from an object:', function () {
     var isMatch = matcher({a: 'b'});
