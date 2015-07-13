@@ -8,7 +8,7 @@
 'use strict';
 
 var deepEqual = require('deep-equal');
-var isObject = require('isobject');
+var isObject = require('is-extendable');
 var isGlob = require('is-glob');
 var mm = require('micromatch');
 
@@ -36,10 +36,17 @@ function isMatch(pattern, options) {
     };
   }
 
-  if (Array.isArray(pattern) || isObject(pattern)) {
+  if (Array.isArray(pattern)) {
+    return function (val) {
+      return mm(val, pattern, options).length !== 0;
+    };
+  }
+
+  if (isObject(pattern)) {
     return function (val) {
       return deepEqual(val, pattern);
     };
   }
-  throw new TypeError('isMatch expects a string, array, regex or function:', arguments);
+
+  throw new TypeError('isMatch expects a string, array, regex, object or function:', arguments);
 }
