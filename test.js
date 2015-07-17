@@ -63,6 +63,8 @@ describe('should return a matching function:', function () {
     matcher(['a', 'b'])('a').should.be.true;
     matcher(['a', 'b'])('c').should.be.false;
     matcher(['*-koaip', '!foo-koa'])('x-koaip').should.be.true;
+    matcher(['*-koaip', '!foo-koa'])('foo-koa').should.be.false;
+    matcher(['*-koaip', '!foo-koa'])('bar').should.be.false;
   });
 
   it('from an array of glob patterns on multiple values', function () {
