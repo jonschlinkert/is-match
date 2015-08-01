@@ -1,16 +1,13 @@
 {
   "name": "is-match",
   "description": "Create a matching function from a glob pattern, regex, string, array, object or function.",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "homepage": "https://github.com/jonschlinkert/is-match",
   "author": {
     "name": "Jon Schlinkert",
     "url": "https://github.com/jonschlinkert"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/jonschlinkert/is-match.git"
-  },
+  "repository": "jonschlinkert/is-match",
   "bugs": {
     "url": "https://github.com/jonschlinkert/is-match/issues"
   },
@@ -29,7 +26,7 @@
     "deep-equal": "^1.0.0",
     "is-extendable": "^0.1.1",
     "is-glob": "^2.0.0",
-    "micromatch": "^2.1.6"
+    "micromatch": "^2.2.0"
   },
   "devDependencies": {
     "mocha": "*",
@@ -58,5 +55,10 @@
     "value",
     "where",
     "wildcard"
-  ]
+  ],
+  "verb": {
+    "related": {
+      "list": ["micromatch", "is-glob"]
+    }
+  }
 }
