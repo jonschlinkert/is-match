@@ -16,7 +16,7 @@ it('should throw if not array, string, regexp, object or function', function () 
     matcher(1234)
   }
   should.throws(fixture, TypeError)
-  should.throws(fixture, /expects a string, array, regex, object or function/)
+  should.throws(fixture, /expects a string, array, regex, plain object or function/)
 })
 
 describe('should return a matching function:', function () {

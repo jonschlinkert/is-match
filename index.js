@@ -12,8 +12,6 @@ var isObject = require('is-extendable');
 var isGlob = require('is-glob');
 var mm = require('micromatch');
 
-module.exports = isMatch;
-
 function isMatch(pattern, options) {
   if (typeof pattern === 'function') {
     return pattern;
@@ -48,5 +46,11 @@ function isMatch(pattern, options) {
     };
   }
 
-  throw new TypeError('isMatch expects a string, array, regex, object or function:', arguments);
+  throw new TypeError('isMatch expects a string, array, regex, plain object or function:', arguments);
 }
+
+/**
+ * Expose `isMatch`
+ */
+
+module.exports = isMatch;
