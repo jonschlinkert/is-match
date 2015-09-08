@@ -13,6 +13,8 @@ var isGlob = require('is-glob');
 var mm = require('micromatch');
 
 function isMatch(pattern, options) {
+  options = options || {};
+
   if (typeof pattern === 'function') {
     return pattern;
   }
@@ -30,7 +32,10 @@ function isMatch(pattern, options) {
       };
     }
     return function (val) {
-      return pattern === val || val.indexOf(pattern) !== -1;
+      if (options.strict === true) {
+        return pattern === val;
+      }
+      return val.indexOf(pattern) > -1;
     };
   }
 
