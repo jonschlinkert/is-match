@@ -25,8 +25,8 @@
   "dependencies": {
     "deep-equal": "^1.0.1",
     "is-extendable": "^0.1.1",
-    "is-glob": "^2.0.0",
-    "micromatch": "^2.2.0"
+    "is-glob": "^2.0.1",
+    "micromatch": "^2.3.7"
   },
   "devDependencies": {
     "mocha": "*"
