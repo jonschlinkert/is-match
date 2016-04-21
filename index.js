@@ -1,7 +1,7 @@
 /*!
  * is-match <https://github.com/jonschlinkert/is-match>
  *
- * Copyright (c) 2015 Jon Schlinkert.
+ * Copyright (c) 2015-2016 Jon Schlinkert.
  * Licensed under the MIT license.
  */
 
@@ -20,18 +20,18 @@ function isMatch(pattern, options) {
   }
 
   if (pattern instanceof RegExp) {
-    return function (val) {
+    return function(val) {
       return pattern.test(val);
     };
   }
 
   if (typeof pattern === 'string') {
     if (isGlob(pattern)) {
-      return function (val) {
+      return function(val) {
         return mm(val, pattern, options).length !== 0;
       };
     }
-    return function (val) {
+    return function(val) {
       if (options.strict === true) {
         return pattern === val;
       }
@@ -40,13 +40,13 @@ function isMatch(pattern, options) {
   }
 
   if (Array.isArray(pattern)) {
-    return function (val) {
+    return function(val) {
       return mm(val, pattern, options).length !== 0;
     };
   }
 
   if (isObject(pattern)) {
-    return function (val) {
+    return function(val) {
       return deepEqual(val, pattern);
     };
   }
