@@ -4,6 +4,10 @@
   "version": "0.4.1",
   "homepage": "https://github.com/jonschlinkert/is-match",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "contributors": [
+    "Charlike Mike Reagent (https://i.am.charlike.online)",
+    "Jon Schlinkert (http://twitter.com/jonschlinkert)"
+  ],
   "repository": "jonschlinkert/is-match",
   "bugs": {
     "url": "https://github.com/jonschlinkert/is-match/issues"
@@ -22,11 +26,11 @@
   "dependencies": {
     "deep-equal": "^1.0.1",
     "is-extendable": "^0.1.1",
-    "is-glob": "^2.0.1",
-    "micromatch": "^2.3.7"
+    "is-glob": "^3.1.0",
+    "micromatch": "^3.0.1"
   },
   "devDependencies": {
-    "mocha": "^2.4.5"
+    "mocha": "^3.4.2"
   },
   "keywords": [
     "any",
@@ -36,6 +40,7 @@
     "function",
     "glob",
     "has",
+    "is",
     "match",
     "matcher",
     "matches",
