@@ -25,11 +25,12 @@
   },
   "dependencies": {
     "deep-equal": "^1.0.1",
-    "is-extendable": "^0.1.1",
-    "is-glob": "^3.1.0",
-    "micromatch": "^3.0.1"
+    "is-number": "^3.0.0",
+    "kind-of": "^4.0.0",
+    "micromatch": "^3.0.2"
   },
   "devDependencies": {
+    "gulp-format-md": "^0.1.12",
     "mocha": "^3.4.2"
   },
   "keywords": [

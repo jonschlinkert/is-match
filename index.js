@@ -7,55 +7,37 @@
 
 'use strict';
 
+var typeOf = require('kind-of');
 var deepEqual = require('deep-equal');
-var isObject = require('is-extendable');
-var isGlob = require('is-glob');
+var isNumber = require('is-number');
 var mm = require('micromatch');
 
-function isMatch(pattern, options) {
-  options = options || {};
-
-  if (typeof pattern === 'function') {
-    return pattern;
-  }
-
-  if (pattern instanceof RegExp) {
-    return function(val) {
-      return pattern.test(val);
+module.exports = function(patterns, options) {
+  if (isNumber(patterns)) {
+    return function(str) {
+      return Number(patterns) === Number(str);
     };
   }
 
-  if (typeof pattern === 'string') {
-    if (isGlob(pattern)) {
+  switch (typeOf(patterns)) {
+    case 'function':
+      return patterns;
+    case 'object':
       return function(val) {
-        return mm(val, pattern, options).length !== 0;
+        return deepEqual(val, patterns);
       };
+    case 'regexp':
+      return function(str) {
+        return patterns.test(str);
+      };
+    case 'array':
+    case 'string':
+      return function(list) {
+        var len = typeof list === 'string' ? 1 : list.length;
+        return mm(list, patterns, options).length === len;
+      };
+    default: {
+      throw new TypeError('invalid');
     }
-    return function(val) {
-      if (options.strict === true) {
-        return pattern === val;
-      }
-      return val.indexOf(pattern) > -1;
-    };
   }
-
-  if (Array.isArray(pattern)) {
-    return function(val) {
-      return mm(val, pattern, options).length !== 0;
-    };
-  }
-
-  if (isObject(pattern)) {
-    return function(val) {
-      return deepEqual(val, pattern);
-    };
-  }
-
-  throw new TypeError('isMatch expects a string, array, regex, plain object or function:', arguments);
-}
-
-/**
- * Expose `isMatch`
- */
-
-module.exports = isMatch;
+};
