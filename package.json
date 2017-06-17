@@ -27,7 +27,7 @@
     "deep-equal": "^1.0.1",
     "is-number": "^3.0.0",
     "kind-of": "^4.0.0",
-    "micromatch": "^3.0.2"
+    "micromatch": "^3.0.3"
   },
   "devDependencies": {
     "gulp-format-md": "^0.1.12",
