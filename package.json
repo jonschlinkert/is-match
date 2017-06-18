@@ -1,7 +1,7 @@
 {
   "name": "is-match",
   "description": "Create a matching function from a glob pattern, regex, string, array, object or function.",
-  "version": "0.4.1",
+  "version": "1.0.0",
   "homepage": "https://github.com/jonschlinkert/is-match",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "contributors": [
